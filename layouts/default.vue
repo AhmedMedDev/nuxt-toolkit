@@ -95,7 +95,7 @@ export default {
     return {
       clipped: false,
       drawer: false,
-      fixed: false,
+      fixed: true,
       items: [
         {
           icon: 'mdi-apps',
@@ -106,6 +106,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
+        },
+        {
+          icon: 'mdi-image-plus-outline',
+          title: 'About',
+          to: '/about'
         }
       ],
       miniVariant: false,
