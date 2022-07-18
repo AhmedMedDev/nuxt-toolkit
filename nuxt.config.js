@@ -1,12 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  loading: {
-    color: 'black',
-    height: '2px',
-    continuous : true,
-    failedColor: 'red',
-  },
+
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -34,7 +29,11 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
-
+  loading: {
+    color: 'black',
+    height: '2px',
+    failedColor: 'red',
+  },
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
   ],
