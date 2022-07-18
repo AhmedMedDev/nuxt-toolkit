@@ -17,9 +17,12 @@
       <tbody>
         <tr v-for="item in todos" :key="item.id">
           <td>{{ item.title }}</td>
-          <td>{{ item.completed }}</td>
           <td>
-            <v-btn color="error ml-3" elevation="2">Delete</v-btn>
+            <span v-if="item.completed" class="rounded-lg success white--text pa-1">completed</span>
+            <span v-else class="rounded-lg error white--text pa-1">uncompleted</span>
+          </td>
+          <td>
+            <v-btn @click="remove(item.id)" color="error ml-3" elevation="2">Delete</v-btn>
           </td>
         </tr>
       </tbody>
@@ -36,8 +39,16 @@ export default {
 
     this.todos = response.data
   },
+  methods: {
+    async remove (id) {
+      let response = await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+
+      console.log(response);
+    }
+  },
   data() {
     return {
+      completed : false,
       todos: [],
     }
   },

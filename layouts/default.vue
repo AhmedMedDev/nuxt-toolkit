@@ -17,7 +17,7 @@
       >
         <v-tab
           v-for="link in links"
-          :key="link"
+          :key="link.to"
           :to="link.to"
           router
           exact
@@ -66,7 +66,7 @@
   export default {
     data: () => ({
       links: [
-        {name : 'Dashboard', to : 'dashboard'},
+        {name : 'Dashboard', to : '/'},
         {name : 'Home', to : 'home'},
         {name : 'About', to : 'about'},
       ]
