@@ -4,22 +4,21 @@
       <thead>
         <tr>
           <th class="text-left">
-            Name
+            title
           </th>
           <th class="text-left">
-            Calories
+            completed
           </th>
-          <th>
+          <th class="text-left">
             Actions
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in desserts" :key="item.name">
-          <td>{{ item.name }}</td>
-          <td>{{ item.calories }}</td>
+        <tr v-for="item in todos" :key="item.id">
+          <td>{{ item.title }}</td>
+          <td>{{ item.completed }}</td>
           <td>
-            <v-btn color="primary" elevation="2">Edit</v-btn>
             <v-btn color="error ml-3" elevation="2">Delete</v-btn>
           </td>
         </tr>
@@ -29,23 +28,17 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
+  async created() {
+
+    let response = await axios.get('https://jsonplaceholder.typicode.com/todos?_page=1&_limit=5');
+
+    this.todos = response.data
+  },
   data() {
     return {
-      desserts: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-        },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-        }
-      ],
+      todos: [],
     }
   },
 }
