@@ -5,7 +5,7 @@
         <thead>
           <tr>
             <th class="text-left">
-              title
+              Title
             </th>
             <th class="text-left">
               Body
@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in posts" :key="item.id" class="mt-2">
+          <tr v-for="item in $store.state.posts" :key="item.id" class="mt-2">
             <td>
               <nuxt-link :to="`posts/${item.id}`">{{ item.title.substring(0, 7) }}</nuxt-link>
             </td>
@@ -48,9 +48,7 @@ export default {
   // middleware: 'auth',
   created() {
 
-    this.$axios.$get('posts')
-      .then(response => this.posts = response.payload.data)
-      .catch(err => console.log(err))
+    this.$store.dispatch('fetchPosts');
   },
   methods: {
     remove(id) {
@@ -67,7 +65,6 @@ export default {
   data() {
     return {
       completed: false,
-      posts: [],
       snackbar: false,
       text: '',
       type: '',
