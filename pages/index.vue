@@ -54,11 +54,8 @@ export default {
         .then(res => this.notify('Task Completed Successfully', 'green'))
     },
     edit(id) {
-      // XXXX
-      this.$store.commit('set_selectedPost', {
-        title: 'title 1',
-        body: 'title 2',
-      })
+      
+      this.$store.commit('set_selectedPost', id)
     },
     notify(message, type) {
       this.snackbar = true;

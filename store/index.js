@@ -1,19 +1,19 @@
 export const state = () => ({
     posts: [],
     selectedPost: {
-        title : 'aaaa',
-        body : 'aaa',
+        title: '',
+        body: '',
     },
 })
 
 export const getters = {
     getSelectdPost: (state) => {
-      return {
-        title : state.selectedPost.title,
-        body : state.selectedPost.body,
-      }
+        return {
+            title: state.selectedPost.title,
+            body: state.selectedPost.body,
+        }
     }
-  }
+}
 
 export const mutations = {
     set_post(state, posts) {
@@ -25,9 +25,15 @@ export const mutations = {
     delete_post(state, id) {
         state.posts.splice(state.posts.findIndex(e => e.id == id), 1);
     },
-    set_selectedPost(state, post) {
-        state.selectedPost = post
-    },
+    set_selectedPost(state, id) {
+
+        const index = state.posts.findIndex(e => e.id == id);
+
+        state.selectedPost = {
+            title: state.posts[index].title,
+            body: state.posts[index].body,
+        }
+    }
 }
 
 export const actions = {
@@ -37,9 +43,9 @@ export const actions = {
             .then(res => state.commit('set_post', res.payload.data))
             .catch(err => console.log(err))
     },
-    addPost(state, {title, body}) {
+    addPost(state, { title, body }) {
 
-        return this.$axios.$post(`posts`, {title, body})
+        return this.$axios.$post(`posts`, { title, body })
             .then(res => state.commit('add_post', res.payload))
             .catch(err => console.log(err))
     },
