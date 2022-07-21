@@ -7,9 +7,6 @@
 
 - Vuex
 - CRUD to test vuex
-    - display all posts
-    - add post 
-    - delete post 
     - edit post 
 - Axios configs
 - pagination nuxt
