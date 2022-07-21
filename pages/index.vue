@@ -45,7 +45,7 @@
 <script>
 import axios from 'axios'
 export default {
-  middleware: 'auth',
+  // middleware: 'auth',
   created() {
 
     axios.get('https://jsonplaceholder.typicode.com/todos', {

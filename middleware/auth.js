@@ -1,7 +1,7 @@
 export default function (context) {
-    let is_auth = false;
+    let is_auth = true;
 
     return (is_auth)
         ? context.next()
-        : context.redirect('auth/login')
+        : window.location('auth/login')
 }
