@@ -8,7 +8,7 @@
               title
             </th>
             <th class="text-left">
-              completed
+              Body
             </th>
             <th class="text-left">
               Actions
@@ -16,16 +16,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in todos" :key="item.id">
+          <tr v-for="item in posts" :key="item.id" class="mt-2">
             <td>
-              <nuxt-link :to="`todo/${item.id}`">{{ item.title }}</nuxt-link>
+              <nuxt-link :to="`todo/${item.id}`">{{ item.title.substring(0, 7) }}</nuxt-link>
             </td>
             <td>
-              <span v-if="item.completed" class="rounded-lg success white--text pa-1">completed</span>
-              <span v-else class="rounded-lg error white--text pa-1">uncompleted</span>
+              <p class="mb-0">{{item.body.substring(0, 20)}}</p>
             </td>
-            <td>
-              <v-btn @click="remove(item.id)" color="error ml-3" elevation="2">Delete</v-btn>
+            <td class="d-flex align-center">
+              <v-btn @click="remove(item.id)" color="error mr-3" elevation="2">Delete</v-btn>
+              <v-btn @click="remove(item.id)" color="info" elevation="2">Edit</v-btn>
             </td>
           </tr>
         </tbody>
@@ -48,13 +48,8 @@ export default {
   // middleware: 'auth',
   created() {
 
-    axios.get('https://jsonplaceholder.typicode.com/todos', {
-      params: {
-        _page: 1,
-        _limit: 5,
-      }
-    })
-      .then(response => this.todos = response.data)
+    this.$axios.$get('posts')
+      .then(response => this.posts = response.payload.data)
       .catch(err => console.log(err))
   },
   methods: {
@@ -72,7 +67,7 @@ export default {
   data() {
     return {
       completed: false,
-      todos: [],
+      posts: [],
       snackbar: false,
       text: '',
       type: '',
