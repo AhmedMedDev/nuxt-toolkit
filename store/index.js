@@ -21,6 +21,12 @@ export const actions = {
             .then(res => state.commit('set_post', res.payload.data))
             .catch(err => console.log(err))
     },
+    addPost(state, {title, body}) {
+
+        return this.$axios.$post(`posts`, {title, body})
+            .then(res => state.commit('add_post', res.payload))
+            .catch(err => console.log(err))
+    },
     deletePost(state, id) {
 
         return this.$axios.$delete(`posts/${id}`)
