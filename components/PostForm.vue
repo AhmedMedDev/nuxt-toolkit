@@ -3,7 +3,7 @@
         <v-text-field label="Title" v-model="post.title"  required></v-text-field>
         <v-text-field label="Body" v-model="post.body"  required></v-text-field>
 
-        <v-btn @click="submit">
+        <v-btn @click="submit" class="success">
             submit
         </v-btn>
         <v-btn @click="clear">clear</v-btn>

@@ -1,6 +1,19 @@
 export const state = () => ({
-    posts: []
+    posts: [],
+    selectedPost: {
+        title : 'aaaa',
+        body : 'aaa',
+    },
 })
+
+export const getters = {
+    getSelectdPost: (state) => {
+      return {
+        title : state.selectedPost.title,
+        body : state.selectedPost.body,
+      }
+    }
+  }
 
 export const mutations = {
     set_post(state, posts) {
@@ -11,7 +24,10 @@ export const mutations = {
     },
     delete_post(state, id) {
         state.posts.splice(state.posts.findIndex(e => e.id == id), 1);
-    }
+    },
+    set_selectedPost(state, post) {
+        state.selectedPost = post
+    },
 }
 
 export const actions = {

@@ -16,9 +16,11 @@
       <v-container>
         <v-row>
           <v-col cols="12" sm="4">
-            <v-sheet class="pa-6" rounded="lg" min-height="268">
+            <v-sheet class="pa-6" rounded="lg">
               <PostForm />
-              <!--  -->
+            </v-sheet>
+            <v-sheet class="pa-6 mt-5" rounded="lg">
+              <PostUpdate />
             </v-sheet>
           </v-col>
 
@@ -35,6 +37,7 @@
 
 <script>
 import PostForm from '~/components/PostForm.vue';
+import PostUpdate from '~/components/PostUpdate.vue';
 export default {
   data: () => ({
     links: [
@@ -43,6 +46,6 @@ export default {
       { name: "About", to: "about" },
     ]
   }),
-  components: { PostForm }
+  components: { PostForm, PostUpdate }
 }
 </script>

@@ -9,5 +9,6 @@
 - CRUD to test vuex
     - add post 
     - edit post 
+    - onclick , put data in form , make btn update not create
 - Axios configs
 - pagination nuxt

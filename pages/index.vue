@@ -21,11 +21,11 @@
               <nuxt-link :to="`posts/${item.id}`">{{ item.title.substring(0, 7) }}</nuxt-link>
             </td>
             <td>
-              <p class="mb-0">{{item.body.substring(0, 20)}}</p>
+              <p class="mb-0">{{ item.body.substring(0, 20) }}</p>
             </td>
             <td class="d-flex align-center">
               <v-btn @click="remove(item.id)" color="error mr-3" elevation="2">Delete</v-btn>
-              <v-btn @click="remove(item.id)" color="info" elevation="2">Edit</v-btn>
+              <v-btn @click="edit(item.id)" color="info" elevation="2">Edit</v-btn>
             </td>
           </tr>
         </tbody>
@@ -52,6 +52,13 @@ export default {
     remove(id) {
       this.$store.dispatch('deletePost', id)
         .then(res => this.notify('Task Completed Successfully', 'green'))
+    },
+    edit(id) {
+      // XXXX
+      this.$store.commit('set_selectedPost', {
+        title: 'title 1',
+        body: 'title 2',
+      })
     },
     notify(message, type) {
       this.snackbar = true;
