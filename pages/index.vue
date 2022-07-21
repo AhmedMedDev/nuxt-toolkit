@@ -18,7 +18,7 @@
         <tbody>
           <tr v-for="item in posts" :key="item.id" class="mt-2">
             <td>
-              <nuxt-link :to="`todo/${item.id}`">{{ item.title.substring(0, 7) }}</nuxt-link>
+              <nuxt-link :to="`posts/${item.id}`">{{ item.title.substring(0, 7) }}</nuxt-link>
             </td>
             <td>
               <p class="mb-0">{{item.body.substring(0, 20)}}</p>
