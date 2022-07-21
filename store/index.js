@@ -3,26 +3,28 @@ export const state = () => ({
 })
 
 export const mutations = {
-    SET_POST(state, posts) {
+    set_post(state, posts) {
         state.posts = posts
     },
-    ADD_POST(state, post) {
+    add_post(state, post) {
         state.posts.push(post)
     },
-    REMOVE_POST(state, post) {
-        state.posts.push(post)
+    delete_post(state, id) {
+        state.posts.splice(state.posts.findIndex(e => e.id == id), 1);
     }
 }
 
 export const actions = {
-    async fetchPosts(state) {
+    fetchPosts(state) {
 
-        const response = await this.$axios.$get('posts')
-        state.commit('SET_POST', response.payload.data)
+        return this.$axios.$get(`posts`)
+            .then(res => state.commit('set_post', res.payload.data))
+            .catch(err => console.log(err))
     },
-    async deletePost(state, id) {
-        
-        const response = await this.$axios.$delete(`posts/${id}`)
-        state.commit('SET_POST', response.payload.data)
+    deletePost(state, id) {
+
+        return this.$axios.$delete(`posts/${id}`)
+            .then(res => state.commit('delete_post', id))
+            .catch(err => console.log(err))
     }
 }

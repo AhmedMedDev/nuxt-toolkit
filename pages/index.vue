@@ -47,14 +47,12 @@ import axios from 'axios'
 export default {
   // middleware: 'auth',
   created() {
-
     this.$store.dispatch('fetchPosts');
   },
   methods: {
     remove(id) {
-      axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
-        .then(response => this.notify('Task Completed Successfully', 'green'))
-        .catch(err => this.notify(`Oops : ${err}`, 'error'))
+      this.$store.dispatch('deletePost', id)
+        .then(res => this.notify('Task Completed Successfully', 'green'))
     },
     notify(message, type) {
       this.snackbar = true;
