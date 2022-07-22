@@ -1,19 +1,20 @@
 <template>
     <v-form ref="updateForm">
-        <v-text-field label="Title" v-model="post.title" required></v-text-field>
-        <v-text-field label="Body" v-model="post.body" required></v-text-field>
+        <v-text-field label="Title" :value="$store.state.selectedPost.title" v-model="post.title" required>
+        </v-text-field>
+        <v-text-field label="Body" :value="$store.state.selectedPost.body" v-model="post.body" required></v-text-field>
 
         <v-btn @click="submit" class="info">
             Update
         </v-btn>
-        
+
         <!-- <p>{{$store.state.selectedPost.title}}</p> -->
     </v-form>
 </template>
 
 <script>
 export default {
-    created() {
+    updated() {
         this.post = this.$store.getters.getSelectdPost
     },
     data: () => ({
@@ -22,12 +23,9 @@ export default {
 
     methods: {
         submit() {
-            this.$store.dispatch('addPost', this.post)
-                .then(res => alert('Post Added Successfully . . . 👍'))
+            this.$store.dispatch('updatePost', this.post)
+            // .then(res => alert('Post Updated Successfully . . . 👍'))
             // .finally(res => this.post = {})
-        },
-        clear() {
-            this.$refs.form.reset();
         }
     }
 };
