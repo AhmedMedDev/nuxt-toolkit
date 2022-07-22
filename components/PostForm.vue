@@ -19,7 +19,7 @@ export default {
     methods: {
         submit() {
             this.$store.dispatch('addPost', this.post)
-            .then(res => alert('Post Added Successfully . . . 👍'))
+            // .then(res => alert('Post Added Successfully . . . 👍'))
             // .finally(res => this.post = {})
         },
         clear() {

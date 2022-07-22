@@ -20,7 +20,7 @@ export const mutations = {
         state.posts = posts
     },
     add_post(state, post) {
-        state.posts.push(post)
+        state.posts.unshift(post)
     },
     delete_post(state, id) {
         state.posts.splice(state.posts.findIndex(e => e.id == id), 1);
@@ -46,13 +46,15 @@ export const actions = {
     addPost(state, { title, body }) {
 
         return this.$axios.$post(`posts`, { title, body })
-            .then(res => state.commit('add_post', res.payload))
+            // .then(res => state.commit('add_post', res.payload))
+            .then(res => state.dispatch('fetchPosts'))
             .catch(err => console.log(err))
     },
     deletePost(state, id) {
 
         return this.$axios.$delete(`posts/${id}`)
-            .then(res => state.commit('delete_post', id))
+            // .then(res => state.commit('delete_post', id))
+            .then(res => state.dispatch('fetchPosts'))
             .catch(err => console.log(err))
     }
 }

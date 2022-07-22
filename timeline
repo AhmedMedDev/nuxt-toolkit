@@ -7,8 +7,7 @@
 
 - Vuex
 - CRUD to test vuex
-    - add post 
     - edit post 
-    - onclick , put data in form , make btn update not create
-- Axios configs
+    - display data in update form
+    - save changes
 - pagination nuxt
